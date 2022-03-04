@@ -1,0 +1,31 @@
+
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'dhananjay12(fa8ab962-f1c9-46be-82e7-ecb64ff82186)'
+    subscriptionId: 'fa8ab962-f1c9-46be-82e7-ecb64ff82186'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'demogroup'
+    location: 'Central US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/dhan12/WebApp784224/master/createwebapp/azuredeploy.json'
+    overrideParameters: 'AzureRmPipeline-conn'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate.'
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+- script: |
+    echo Add other tasks to build, test, and deploy your project.
+    echo See https://aka.ms/yaml
+  displayName: 'Run a multi-line script'
