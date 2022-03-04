@@ -40,3 +40,15 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'Pay-As-You-Go(c0b23e13-96b5-4ac9-a35d-afe02a49a222)'
+    subscriptionId: 'c0b23e13-96b5-4ac9-a35d-afe02a49a222'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'azurepipeline-rg'
+    location: 'Central US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/dhan12/WebApp784224/master/createwebapp/azuredeploy.json'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
